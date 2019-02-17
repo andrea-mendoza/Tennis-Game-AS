@@ -1,6 +1,5 @@
 var TennisGame2 = function(namePlayer1, namePlayer2) {
     this.initializePlayersScore();
-    this.initializePlayersResults();
     this.setPlayersNames(namePlayer1,namePlayer2);
 };
 
@@ -12,11 +11,6 @@ TennisGame2.prototype.setPlayersNames = function(namePlayer1, namePlayer2){
 TennisGame2.prototype.initializePlayersScore = function(){
     this.pointsPlayer1 = 0;
     this.pointsPlayer2 = 0;
-}
-
-TennisGame2.prototype.initializePlayersResults = function(){
-    this.resultPlayer1 = "";
-    this.resultPlayer2 = "";
 }
 
 TennisGame2.prototype.areEqualScore= function(pointsPlayer1,pointsPlayer2){
