@@ -37,10 +37,6 @@ TennisGame2.prototype.getPointName= function(playerPoint){
         return "Forty";
 }
 
-// TennisGame2.prototype.getGameScore= function(playerPoint){
-    
-// }
-
 TennisGame2.prototype.isDeuce= function(pointsPlayer){
     if(pointsPlayer >= 3)
         return true;
@@ -58,17 +54,19 @@ TennisGame2.prototype.diferenceBetween= function(pointsPlayer1,pointsPlayer2){
     return pointsPlayer1 - pointsPlayer2;
 }
 
-// TennisGame2.prototype.isAnAdvantageScoring= function(){
-//     if(this.pointsPlayer1 >=4 || this.pointsPlayer2 >=4){
-//         if(this.diferenceBetween(this.pointsPlayer1,this.pointsPlayer2) === 1 || this.diferenceBetween(this.pointsPlayer2,this.pointsPlayer1) === 1)
-//             return true;
-//         else   
-//             return false;
-//     }
-//     else
-//         return false;
-// }
+TennisGame2.prototype.isAnAdvantageScoring= function(){
+    if(this.diferenceBetween(this.pointsPlayer1,this.pointsPlayer2) === 1 || this.diferenceBetween(this.pointsPlayer2,this.pointsPlayer1) === 1)
+        return true;
+    else   
+        return false;
+}
 
+TennisGame2.prototype.advantageScoringFor= function(){
+    if(this.diferenceBetween(this.pointsPlayer1,this.pointsPlayer2) === 1)
+        return "player1";
+    else   
+        return "player2";
+}
 TennisGame2.prototype.getScore = function() {
     var score = "";
 
@@ -85,58 +83,9 @@ TennisGame2.prototype.getScore = function() {
         score = this.getPointName(this.pointsPlayer1) + "-" + this.getPointName(this.pointsPlayer2)  
     }
 
-    // if (this.pointsPlayer1 > 0 && this.pointsPlayer2 === 0) {
-    //     if (this.pointsPlayer1 === 1)
-    //         this.resultPlayer1 = "Fifteen";
-    //     if (this.pointsPlayer1 === 2)
-    //         this.resultPlayer1 = "Thirty";
-    //     if (this.pointsPlayer1 === 3)
-    //         this.resultPlayer1 = "Forty";
-
-    //     this.resultPlayer2 = "Love";
-    //     score = this.resultPlayer1 + "-" + this.resultPlayer2;
-    // }
-    // if (this.pointsPlayer2 > 0 && this.pointsPlayer1 === 0) {
-    //     if (this.pointsPlayer2 === 1)
-    //         this.resultPlayer2 = "Fifteen";
-    //     if (this.pointsPlayer2 === 2)
-    //         this.resultPlayer2 = "Thirty";
-    //     if (this.pointsPlayer2 === 3)
-    //         this.resultPlayer2 = "Forty";
-
-    //     this.resultPlayer1 = "Love";
-    //     score = this.resultPlayer1 + "-" + this.resultPlayer2;
-    // }
-
-    // if (this.pointsPlayer1 > this.pointsPlayer2 && this.pointsPlayer1 < 4) {
-    //     if (this.pointsPlayer1 === 2)
-    //         this.resultPlayer1 = "Thirty";
-    //     if (this.pointsPlayer1 === 3)
-    //         this.resultPlayer1 = "Forty";
-    //     if (this.pointsPlayer2 === 1)
-    //         this.resultPlayer2 = "Fifteen";
-    //     if (this.pointsPlayer2 === 2)
-    //         this.resultPlayer2 = "Thirty";
-    //     score = this.resultPlayer1 + "-" + this.resultPlayer2;
-    // }
-    // if (this.pointsPlayer2 > this.pointsPlayer1 && this.pointsPlayer2 < 4) {
-    //     if (this.pointsPlayer2 === 2)
-    //         this.resultPlayer2 = "Thirty";
-    //     if (this.pointsPlayer2 === 3)
-    //         this.resultPlayer2 = "Forty";
-    //     if (this.pointsPlayer1 === 1)
-    //         this.resultPlayer1 = "Fifteen";
-    //     if (this.pointsPlayer1 === 2)
-    //         this.resultPlayer1 = "Thirty";
-    //     score = this.resultPlayer1 + "-" + this.resultPlayer2;
-    // }
-
-    if (this.pointsPlayer1 > this.pointsPlayer2 && this.pointsPlayer2 >= 3) {
-        score = "Advantage player1";
-    }
-
-    if (this.pointsPlayer2 > this.pointsPlayer1 && this.pointsPlayer1 >= 3) {
-        score = "Advantage player2";
+    else if (this.isAnAdvantageScoring())
+    {
+        score = "Advantage " + this.advantageScoringFor();
     }
 
     if (this.pointsPlayer1 >= 4 && this.pointsPlayer2 >= 0 && (this.pointsPlayer1 - this.pointsPlayer2) >= 2) {
