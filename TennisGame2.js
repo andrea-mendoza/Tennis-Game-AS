@@ -19,32 +19,52 @@ TennisGame2.prototype.initializePlayersResults = function(){
     this.resultPlayer2 = "";
 }
 
+TennisGame2.prototype.areEqualScore= function(pointsPlayer1,pointsPlayer2){
+    if(pointsPlayer1 === pointsPlayer2)
+        return true;
+    else
+        return false;
+}
+
+TennisGame2.prototype.getPointName= function(playerPoint){
+    if(playerPoint === 0)
+        return "Love";
+    else if (playerPoint === 1)
+        return "Fifteen";
+    else if(playerPoint === 2)
+        return "Thirty";
+    else if (playerPoint >= 3)
+        return "Forty";
+}
+
+
+TennisGame2.prototype.isDeuce= function(pointsPlayer){
+    if(pointsPlayer >= 3)
+        return true;
+    else
+        return false;
+}
 TennisGame2.prototype.getScore = function() {
     var score = "";
 
-    if (this.pointsPlayer1 === this.pointsPlayer2 && this.pointsPlayer1 < 3) {
-        if (this.pointsPlayer1 === 0)
-            score = "Love";
-        if (this.pointsPlayer1 === 1)
-            score = "Fifteen";
-        if (this.pointsPlayer1 === 2)
-            score = "Thirty";
-        score += "-All";
+    if(this.areEqualScore())
+    {
+        if(this.isDeuce(this.pointsPlayer1))
+            score = "Deuce";
+        else
+            score = this.getPointName(this.pointsPlayer1) + "-All";
     }
-    if (this.pointsPlayer1 === this.pointsPlayer2 && this.pointsPlayer1 > 2)
-        score = "Deuce";
+        if (this.pointsPlayer1 > 0 && this.pointsPlayer2 === 0) {
+            if (this.pointsPlayer1 === 1)
+                this.resultPlayer1 = "Fifteen";
+            if (this.pointsPlayer1 === 2)
+                this.resultPlayer1 = "Thirty";
+            if (this.pointsPlayer1 === 3)
+                this.resultPlayer1 = "Forty";
 
-    if (this.pointsPlayer1 > 0 && this.pointsPlayer2 === 0) {
-        if (this.pointsPlayer1 === 1)
-            this.resultPlayer1 = "Fifteen";
-        if (this.pointsPlayer1 === 2)
-            this.resultPlayer1 = "Thirty";
-        if (this.pointsPlayer1 === 3)
-            this.resultPlayer1 = "Forty";
-
-        this.resultPlayer2 = "Love";
-        score = this.resultPlayer1 + "-" + this.resultPlayer2;
-    }
+            this.resultPlayer2 = "Love";
+            score = this.resultPlayer1 + "-" + this.resultPlayer2;
+        }
     if (this.pointsPlayer2 > 0 && this.pointsPlayer1 === 0) {
         if (this.pointsPlayer2 === 1)
             this.resultPlayer2 = "Fifteen";
