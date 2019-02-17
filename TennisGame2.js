@@ -67,9 +67,16 @@ TennisGame2.prototype.advantageScoringFor= function(){
     else   
         return "player2";
 }
-TennisGame2.prototype.getScore = function() {
-    var score = "";
 
+TennisGame2.prototype.winSetFor= function(){
+    if(this.diferenceBetween(this.pointsPlayer1,this.pointsPlayer2) >= 2)
+        return "player1";
+    else   
+        return "player2";
+}
+
+TennisGame2.prototype.gameScoreboard = function() {
+    var score = "";
     if(this.areEqualScore(this.pointsPlayer1,this.pointsPlayer2))
     {
         if(this.isDeuce(this.pointsPlayer1))
@@ -77,23 +84,12 @@ TennisGame2.prototype.getScore = function() {
         else
             score = this.getPointName(this.pointsPlayer1) + "-All";
     }
-
     else if(this.isLessThanFour(this.pointsPlayer1) && this.isLessThanFour(this.pointsPlayer2))
-    {
         score = this.getPointName(this.pointsPlayer1) + "-" + this.getPointName(this.pointsPlayer2)  
-    }
-
     else if (this.isAnAdvantageScoring())
-    {
         score = "Advantage " + this.advantageScoringFor();
-    }
-
-    if (this.pointsPlayer1 >= 4 && this.pointsPlayer2 >= 0 && (this.pointsPlayer1 - this.pointsPlayer2) >= 2) {
-        score = "Win for player1";
-    }
-    if (this.pointsPlayer2 >= 4 && this.pointsPlayer1 >= 0 && (this.pointsPlayer2 - this.pointsPlayer1) >= 2) {
-        score = "Win for player2";
-    }
+    else 
+        score = "Win for " + this.winSetFor();
     return score;
 };
 
