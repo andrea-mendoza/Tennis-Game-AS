@@ -67,7 +67,7 @@ describe('TennisGame2', function() {
         }
         console.log("Expect game: "+player1Score.toString()+ " - "+player2Score.toString() + "  RETURNS:  "+literalScore )
 
-        expect(thisGame.gameScoreboard()).equal(literalScore);
+        expect(thisGame.getGameScoreboard()).equal(literalScore);
     }
 
 });
